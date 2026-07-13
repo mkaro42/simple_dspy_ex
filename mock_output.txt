@@ -1,0 +1,136 @@
+$ export ANTHROPIC_API_KEY="sk-ant-..."
+$ python dspy_qa_bootstrap.py
+
+=== Baseline (no demonstrations) ===
+Average Metric: 3.00 / 4 (75.0%): 100%|██████████████████████████| 4/4 [00:05<00:00,  1.32s/it]
+
+=== Compiling with BootstrapFewShot ===
+ 83%|███████████████████████████████████████▏       | 5/6 [00:06<00:01,  1.21s/it]
+Bootstrapped 4 full traces after 5 examples in round 0.
+
+=== Optimized (with bootstrapped demonstrations) ===
+Average Metric: 4.00 / 4 (100.0%): 100%|█████████████████████████| 4/4 [00:06<00:00,  1.55s/it]
+
+----------------------------------------
+Baseline  accuracy: 75.0
+Optimized accuracy: 100.0
+----------------------------------------
+
+=== Last prompt sent to the LM ===
+
+
+
+
+[2025-07-13T20:17:41.913204]
+
+System message:
+
+Your input fields are:
+1. `question` (str): a factual question
+
+Your output fields are:
+1. `reasoning` (str)
+2. `answer` (str): the concise factual answer, no full sentence
+
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## question ## ]]
+{question}
+
+[[ ## reasoning ## ]]
+{reasoning}
+
+[[ ## answer ## ]]
+{answer}
+
+[[ ## completed ## ]]
+
+In adhering to this structure, your objective is:
+        Answer the question with a short, factual answer (a few words at most).
+
+
+User message:
+
+[[ ## question ## ]]
+What is the capital of France?
+
+Assistant message:
+
+[[ ## reasoning ## ]]
+France is a country in Western Europe. Its seat of government and capital city is Paris.
+
+[[ ## answer ## ]]
+Paris
+
+[[ ## completed ## ]]
+
+
+User message:
+
+[[ ## question ## ]]
+What is the chemical symbol for gold?
+
+Assistant message:
+
+[[ ## reasoning ## ]]
+Gold is a chemical element. On the periodic table its symbol is derived from the Latin "aurum", giving Au.
+
+[[ ## answer ## ]]
+Au
+
+[[ ## completed ## ]]
+
+
+User message:
+
+[[ ## question ## ]]
+What planet is known as the Red Planet?
+
+Assistant message:
+
+[[ ## reasoning ## ]]
+The planet commonly called the Red Planet is Mars, named for its reddish appearance caused by iron oxide on its surface.
+
+[[ ## answer ## ]]
+Mars
+
+[[ ## completed ## ]]
+
+
+User message:
+
+[[ ## question ## ]]
+In what year did World War II end?
+
+Assistant message:
+
+[[ ## reasoning ## ]]
+World War II ended in 1945, with victory in Europe in May and the surrender of Japan in September.
+
+[[ ## answer ## ]]
+1945
+
+[[ ## completed ## ]]
+
+
+User message:
+
+[[ ## question ## ]]
+What gas do plants primarily absorb for photosynthesis?
+
+Respond with the corresponding output fields, starting with the field `[[ ## reasoning ## ]]`, then `[[ ## answer ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## reasoning ## ]]
+During photosynthesis, plants take in a gas from the atmosphere and, using light energy, convert it together with water into glucose and oxygen. The gas absorbed is carbon dioxide.
+
+[[ ## answer ## ]]
+Carbon dioxide
+
+[[ ## completed ## ]]
+
+
+Saved optimized program to optimized_qa.json
+$
